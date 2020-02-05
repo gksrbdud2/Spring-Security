@@ -2,7 +2,7 @@ package com.example.demo.dto;
 
 import java.time.LocalDateTime;
 
-import com.example.demo.entity.MemberEntity;
+import com.example.demo.entity.Member_entity;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -21,8 +21,8 @@ public class MemberDto {
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
-    public MemberEntity toEntity(){
-        return MemberEntity.builder()
+    public Member_entity toEntity(){
+        return Member_entity.builder()
                 .id(id)
                 .email(email)
                 .password(password)
