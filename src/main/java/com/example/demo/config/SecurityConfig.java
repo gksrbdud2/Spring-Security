@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").permitAll()
                 // .anyRequest().authenticated() : 모든 요청에 대해, 인증된 사용자만 접근하도록 설정할 수도 있다.
             .and() // 로그인 설정
-                .formLogin()
-                .loginPage("/user/login") // 기본제공되는 form 은 /login이다.
+                .formLogin() //form 태그 기반의 로그인을 지원하겠다는 설정 
+                .loginPage("/user/login") // 기본제공되는 form 은 /login이다. 기본 경로로 지정하면 스프링시큐어리티에서 제공하는 기본 로그인 화면을 볼 수 있다.
                 .defaultSuccessUrl("/user/login/result")
                 .permitAll()
                 // 로그인 form에서 아이디는 name=username인 input을 기본으로 인식하는데, usernameParameter("파라미터명")메서드를 통해 파라미터명을 변경할 수 있다.
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.logoutUrl("/logout") -> 이게 default
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //기본적으로 "/logout"에 접근하면 HTTP세션을 제거한다. 이 메서드는 /logout이 아닌 다른 URL로 재정의한다.
                 .logoutSuccessUrl("/user/logout/result")
-                .invalidateHttpSession(true) //http 세션을 초기화하는 작업
+                .invalidateHttpSession(true) //http 세션을 초기화하는 작업(Spring Security가 웹을 처리하는 기본 방식은 HttpSession)
                 //deleteCookies("KEY명") 로그아웃 시,특정 쿠키를 제거하고 싶을 때 사용하는 메서드
             .and()
                 // 403 예외처리 핸들링
